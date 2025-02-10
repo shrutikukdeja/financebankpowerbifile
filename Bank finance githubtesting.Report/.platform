@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Bank finance githubtesting"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8e51da23-4085-4d2e-9c9d-47f15947b9f7"
+  }
+}
