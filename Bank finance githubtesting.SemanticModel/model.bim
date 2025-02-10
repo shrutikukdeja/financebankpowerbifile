@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.1203.0 (24.11)"
+        "value": "2.139.2054.0 (24.12)+334ca1c95b576cc53924655643b0d36f21caac55"
       },
       {
         "name": "PBI_ProTooling",
@@ -629,7 +629,9 @@
                       "Weight": 0.99
                     }
                   },
-                  {},
+                  {
+                    "": {}
+                  },
                   {
                     "address location": {
                       "Source": {
@@ -10914,18 +10916,18 @@
           }
         ],
         "expression": [
-          "let",
-          "Source = #\"financial_loan$\",",
-          "  #\"Detected Type Mismatches\" = let",
-          "    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),",
-          "    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),",
-          "    fieldNames = Record.FieldNames(recordTypeFields),",
-          "    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),",
-          "    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = \"The type of the value does not match the type of the column.\", Detail = v], fieldTypes{i}})",
-          "in",
-          "    Table.TransformColumns(Source, pairs),",
-          "  #\"Added Index\" = Table.AddIndexColumn(#\"Detected Type Mismatches\", \"Row Number\" ,1)",
-          "in",
+          "let\r",
+          "Source = #\"financial_loan$\",\r",
+          "  #\"Detected Type Mismatches\" = let\r",
+          "    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),\r",
+          "    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),\r",
+          "    fieldNames = Record.FieldNames(recordTypeFields),\r",
+          "    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),\r",
+          "    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = \"The type of the value does not match the type of the column.\", Detail = v], fieldTypes{i}})\r",
+          "in\r",
+          "    Table.TransformColumns(Source, pairs),\r",
+          "  #\"Added Index\" = Table.AddIndexColumn(#\"Detected Type Mismatches\", \"Row Number\" ,1)\r",
+          "in\r",
           "    #\"Added Index\""
         ],
         "kind": "m",
@@ -10945,13 +10947,13 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Sql.Databases(\"SEZ-LAP-134\\SQLEXPRESS\"),",
-          "    bank = Source{[Name=\"bank\"]}[Data],",
-          "    #\"dbo_financial_loan$\" = bank{[Schema=\"dbo\",Item=\"financial_loan$\"]}[Data],",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"dbo_financial_loan$\",{{\"id\", Int64.Type}, {\"F25\", type text}, {\"address_state\", type text}, {\"application_type\", type text}, {\"emp_length\", type text}, {\"emp_title\", type text}, {\"grade\", type text}, {\"home_ownership\", type text}, {\"issue_date\", type datetime}, {\"last_credit_pull_date\", type date}, {\"last_payment_date\", type date}, {\"loan_status\", type text}, {\"next_payment_date\", type date}, {\"member_id\", Int64.Type}, {\"purpose\", type text}, {\"sub_grade\", type text}, {\"term\", type text}, {\"verification_status\", type text}, {\"annual_income\", type number}, {\"dti\", type number}, {\"installment\", type number}, {\"int_rate\", type number}, {\"loan_amount\", Int64.Type}, {\"total_acc\", Int64.Type}, {\"total_payment\", Int64.Type}}),",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"F25\"})",
-          "in",
+          "let\r",
+          "    Source = Sql.Databases(\"SEZ-LAP-134\\SQLEXPRESS\"),\r",
+          "    bank = Source{[Name=\"bank\"]}[Data],\r",
+          "    #\"dbo_financial_loan$\" = bank{[Schema=\"dbo\",Item=\"financial_loan$\"]}[Data],\r",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(#\"dbo_financial_loan$\",{{\"id\", Int64.Type}, {\"F25\", type text}, {\"address_state\", type text}, {\"application_type\", type text}, {\"emp_length\", type text}, {\"emp_title\", type text}, {\"grade\", type text}, {\"home_ownership\", type text}, {\"issue_date\", type datetime}, {\"last_credit_pull_date\", type date}, {\"last_payment_date\", type date}, {\"loan_status\", type text}, {\"next_payment_date\", type date}, {\"member_id\", Int64.Type}, {\"purpose\", type text}, {\"sub_grade\", type text}, {\"term\", type text}, {\"verification_status\", type text}, {\"annual_income\", type number}, {\"dti\", type number}, {\"installment\", type number}, {\"int_rate\", type number}, {\"loan_amount\", Int64.Type}, {\"total_acc\", Int64.Type}, {\"total_payment\", Int64.Type}}),\r",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"F25\"})\r",
+          "in\r",
           "    #\"Removed Columns\""
         ],
         "kind": "m",
@@ -11569,6 +11571,11 @@
             "name": "git new test",
             "expression": "\"new changed\"",
             "lineageTag": "256b91ec-936a-4b08-96b4-ad7f0d931b0f"
+          },
+          {
+            "name": "gittest measure to",
+            "expression": "\"testingMeasure\"",
+            "lineageTag": "03c0cb18-0fc2-4164-9d18-418d9fa8fc36"
           }
         ],
         "partitions": [
