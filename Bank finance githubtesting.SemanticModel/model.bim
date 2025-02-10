@@ -11564,6 +11564,11 @@
             "expression": "CALCULATE([Total Received Amount],financial_loan[Good vs bad Loan Loan]=\"Bad Loan Group\")",
             "formatString": "\\$#,0.0;(\\$#,0.0);\\$#,0.0",
             "lineageTag": "92436a8e-d4df-4320-8f57-ef96b8b886d6"
+          },
+          {
+            "name": "git new test",
+            "expression": "\"new changed\"",
+            "lineageTag": "256b91ec-936a-4b08-96b4-ad7f0d931b0f"
           }
         ],
         "partitions": [
